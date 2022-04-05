@@ -1,14 +1,37 @@
-let carts = document.querySelectorAll('.add-cart')
+const carts = document.querySelectorAll('.add-cart')
+const productsEl = document.querySelector(".container");
 
-let products = [
-    {tag: 'arete', name: 'Clau',  price: 35.00, inCart: 0},
-    {tag: 'arete1', name: 'Gabe', price: 47.00, inCart: 0,},
-    {tag: 'arete2', name: 'Nelu', price: 45.00, inCart: 0},
-    {tag: 'arete3', name: 'Nique', price: 45.00, inCart: 0},
-];
 
-for(let i=0; i< carts.length; i++) {
-    carts[i].addEventListener('click', () => {
+document.addEventListener("DOMContentLoaded", () => {
+	fetchData(); //llama a funcion para traer datos del JSON
+});
+
+const fetchData = async () => {
+    try {
+        const res = await fetch("data/data.json");
+        const data = await res.json();
+        renderProducts(data);
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+function renderProducts(data){
+    data.forEach((product)=> {
+        productsEl.innerHTML +=`
+            <div id=2 class="image">
+                <img src="${product.imgSrc}" alt="aro">
+                <h3>Arete ${product.name}</h3>
+                <h3>S/ ${product.price}</h3>
+                <a id='añadir' class="add-cart"  href="#">Añadir al Carrito</a>
+                <input type="hidden" value="20"/>
+            </div>
+            `
+    })
+} renderProducts()
+
+for(let i=0; i< data.length; i++) {
+    data[i].addEventListener('click', () => {
     
         Toastify({
             text: "Agregado al carrito.",
@@ -115,7 +138,7 @@ function displayCart() {
         productContainer.innerHTML = '';
         Object.values(cartItems).map( (item, index) => {
             productContainer.innerHTML += 
-            `<div class="product"><ion-icon name="close-circle"></ion-icon><img src="./images/${item.name}.jpg" />
+            `<div class="product"><ion-icon name="close-circle"></ion-icon><img src="./assets/images/${item.name}.jpg" />
                 <span class="sm-hide">${item.name}</span>
             </div>
             <div class="price sm-hide">S/${item.price}.00</div>
@@ -143,7 +166,9 @@ function manageQuantity() {
     let increaseButtons = document.querySelectorAll('.increase');
     let currentQuantity = 0;
     let currentProduct = '';
+
     let cartItems = localStorage.getItem('productsInCart');
+    
     cartItems = JSON.parse(cartItems);
 
     for(let i=0; i < increaseButtons.length; i++) {

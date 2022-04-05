@@ -1,0 +1,34 @@
+[
+    {
+    "tag": "arete",
+    "name": "Clau",
+    "price": 35.00,
+    "inCart": 0,
+    "id": 0,
+    "imgSrc": "img/Clau.jpg"
+    },
+    {
+    "tag": "arete1",
+    "name": "Gabe",
+    "price": 47.00,
+    "inCart": 0,
+    "id": 1,
+    "imgSrc": "img/Gabe.jpg"
+    },
+    {
+    "tag": "arete2",
+    "name": "Nelu",
+    "price": 45.00,
+    "inCart": 0,
+    "id": 2,
+    "imgSrc": "img/Nelu.jpg"
+    },
+    {
+    "tag": "arete3",
+    "name": "Nique",
+    "price": 45.00,
+    "inCart": 0,
+    "id": 3,
+    "imgSrc": "img/Nique.jpg"
+    }
+]
